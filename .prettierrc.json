@@ -1,4 +1,5 @@
 {
   "printWidth": 300,
-  "htmlWhitespaceSensitivity": "ignore"
+  "htmlWhitespaceSensitivity": "ignore",
+  "htmlSelfClosingTags": "never"
 }
