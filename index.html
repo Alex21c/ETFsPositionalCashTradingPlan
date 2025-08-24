@@ -27,6 +27,7 @@
 
       body {
         font-size: 1.2rem;
+        margin-bottom: 25rem;
       }
 
       h2 {
@@ -88,7 +89,100 @@
       h4 a {
         color: white;
       }
+
+      p {
+        margin: 0.5rem 0;
+      }
     </style>
+    <script>
+      async function getCellValue() {
+        const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRtq3DQ83J2Og1CQ0mpNn6XApPDNYMALO0XXmmgJQAYWyK4VJkABYLN5YTkTgCpt-I28l7clf07sr3C/pub?gid=0&single=true&output=csv";
+        const response = await fetch(url);
+        const text = await response.text();
+
+        // Split CSV into rows
+        let rows = text.split("THE_NEWLINE").map((r) => r.split("THE_SEPARATOR"));
+        rows = rows.map((cols) => {
+          const c0 = cols[0].replace(/,|\"|\r\n/g, "");
+          const c1 = cols[1]?.replace(/,|\"|\r\n/g, "");
+          // console.log(c0, c1);
+          // console.log(cols);
+          cols = [c0, c1];
+          return cols;
+        });
+        // update target date
+        const b3 = rows[0][0];
+        document.getElementById("ETFsPositionalCashTradingPlanTimeBasedExitAllowedOnlyAfterFollowingDate").innerText = b3;
+        // css highlighting
+        const today = new Date();
+        const targetDate = new Date(b3);
+        today.setHours(0, 0, 0, 0);
+        if (today >= targetDate) {
+          document.getElementById("ETFsPositionalCashTradingPlanTimeBasedExitAllowedOnlyAfterFollowingDate").style.backgroundColor = "#B4EEEE";
+        }
+        //Max allowed capital for hedging in FD-PortfolioHedgingCapital (20% of (portfolio holdings + cash in zerodha) )
+        let b4 = rows[1][0];
+        b4 = parseInt(b4.replace(/[^\d]/g, ""), 10);
+
+        document.getElementById("ETFsPositionalCashTradingPlanRequired20PercentOfPortfolioHoldingsPlusCashInZerodha").innerText = "₹" + b4;
+
+        // ETFsPositionalCashTradingPlanPresentIn🎁📈FdETFsCashPortfolioHedgingCapital
+        let b5 = rows[2][0];
+        b5 = parseInt(b5.replace(/[^\d]/g, ""), 10);
+        document.getElementById("ETFsPositionalCashTradingPlanPresentIn🎁📈FdETFsCashPortfolioHedgingCapital").innerText = "₹" + b5;
+
+        // ETFsPositionalCashTradingPlanIsAllowedToOpenHedgingAccountWithFyers
+        document.getElementById("ETFsPositionalCashTradingPlanIsAllowedToOpenHedgingAccountWithFyers").innerText = b5 >= b4 ? "YES" : "Not Yet";
+
+        //ETFsPositionalCashTradingPlan🌳ZerodhaEtfsHoldings
+        const b6 = rows[3][0];
+        document.getElementById("ETFsPositionalCashTradingPlan🌳ZerodhaEtfsHoldings").innerText = b6;
+        //ETFsPositionalCashTradingPlanZerodhaCash
+        const b7 = rows[4][0];
+        document.getElementById("ETFsPositionalCashTradingPlanZerodhaCash").innerText = b7;
+        //ETFsPositionalCashTradingPlanAtPresentZerodhaCapitalLoanCloseAmount(Debt)
+        const b8 = rows[5][0];
+        document.getElementById("ETFsPositionalCashTradingPlanAtPresentZerodhaCapitalLoanCloseAmount(Debt)").innerText = b8;
+        //ETFsPositionalCashTradingPlanEquity
+        const b9 = rows[6][0];
+        document.getElementById("ETFsPositionalCashTradingPlanEquity").innerText = b9;
+        //ETFsPositionalCashTradingPlanZerodhaCapitalDebt:Equity(Present)
+        const b10 = rows[7][0];
+        document.getElementById("ETFsPositionalCashTradingPlanZerodhaCapitalDebt:Equity(Present)").innerText = b10;
+
+        //howMuchCurrencyOneAllowedToBorrowFromZerodhaCapital
+        const b11 = rows[8][0];
+        document.getElementById("howMuchCurrencyOneAllowedToBorrowFromZerodhaCapital").innerText = b11;
+      }
+      getCellValue();
+
+      //currentPhaseOfZerodhaETFsPositionalTrading
+      async function currentPhaseOfZerodhaETFsPositionalTrading() {
+        const selectCurrentPhaseOfZerodhaETFsPositionalTrading = document.getElementById("selectCurrentPhaseOfZerodhaETFsPositionalTrading");
+        const actionAccordingToCurrentPhaseTradingPlanRules = document.getElementById("actionAccordingToCurrentPhaseTradingPlanRules");
+        selectCurrentPhaseOfZerodhaETFsPositionalTrading.addEventListener("change", () => {
+          const value = selectCurrentPhaseOfZerodhaETFsPositionalTrading.options[selectCurrentPhaseOfZerodhaETFsPositionalTrading.selectedIndex].text;
+          let data = "";
+          if (value.toLowerCase() == "phase #1") {
+            data = "Invest Own Capital";
+          } else if (value.toLowerCase() == "phase #2") {
+            data = "Take Loan from Zerodha Capital (maintain debit : equity = 50%)";
+          } else if (value.toLowerCase() == "phase #3") {
+            data = "Take another Loan from Zerodha Capital (maintain debit : equity = 75%)";
+          } else if (value.toLowerCase() == "phase #4") {
+            data = "Gradual Loan Repayment to Zerodha Capital (debt : equity restore to 50% || 0%)";
+          } else if (value.toLowerCase() == "phase #5") {
+            data = "TimebasedExit Triggered, Urgent Loan Repayment to zerodha capital (maintain debt : equity to 0%";
+          }
+          actionAccordingToCurrentPhaseTradingPlanRules.innerText = data;
+        });
+      }
+
+      // execute only after window load contents
+      window.addEventListener("load", () => {
+        currentPhaseOfZerodhaETFsPositionalTrading();
+      });
+    </script>
   </head>
   <body>
     <h1>ETFs positional cash trading plan</h1>
@@ -104,11 +198,14 @@
           <li>
             <a href="#ETFsPositionalCashTradingPlanRiskManagementStrategy">RISK MANAGEMENT STRATEGY</a>
           </li>
+          <li><a href="#ETFsPositionalCashTradingPlanHedgingStrategy">HEDGING STRATEGY</a></li>
+          <li><a href="#ETFsPositionalCashTradingPlanMoneyManagementStrategy(ZerodhaCapitalBorrowingStrategy)">MONEY MANAGEMENT STRATEGY (ZERODHA CAPITAL BORROWING STRATEGY)</a></li>
         </ul>
       </nav>
     </header>
 
     <main>
+      <!-- WHY -->
       <section>
         <h2 id="ETFsPositionalCashTradingPlanWhy">WHY</h2>
 
@@ -255,6 +352,7 @@
         </section>
       </section>
 
+      <!-- RISK MANAGEMENT STRATEGY -->
       <section>
         <h2 id="ETFsPositionalCashTradingPlanRiskManagementStrategy">RISK MANAGEMENT STRATEGY</h2>
         <section>
@@ -667,11 +765,6 @@
           <p id="ETFsPositionalCashTradingPlanTimeBasedExitAllowedOnlyAfterFollowingDate" style="padding: 1rem"></p>
         </section>
 
-        <section class="orange">
-          <h3>Days left for TIme based EXIT</h3>
-          <p id="ETFsPositionalCashTradingPlanDaysLeftForTimeBasedExit"></p>
-        </section>
-
         <section>
           <h3>
             <span class="bold">TIME BASED EXIT CRITERIA</span>
@@ -704,39 +797,321 @@
           </p>
         </section>
       </section>
+
+      <!-- HEDGING STRATEGY -->
+      <section>
+        <h2 id="ETFsPositionalCashTradingPlanHedgingStrategy">HEDGING STRATEGY</h2>
+        <section>
+          <h3>
+            How to
+            <span class="bold">prepare for black swan event</span>
+            like Covid or 2008 housing crisis, in which
+            <span class="bold">there was more than 50% correction</span>
+            , in that case if
+            <span class="bold">one have taken loan from zerodha capital</span>
+            , one's principal amount would be vaporized?
+          </h3>
+          <p>
+            Case #1 : Assuming one have capital in FDPortfolioHedgingCapital, then refer
+            <a href="#ETFsPositionalCashTradingPlanHedgingCriteria">HEDGING CRITERIA</a>
+            <br />
+            one has started payins of profits from mcx gold futures trading into FDPortfolioHedgingCapital as well, hope this will also helps one in hedging one's portfolio
+            <br />
+            <br />
+            Case #2: Not enough captial to HEDGE, then make sure one's debt:equity ratio is strictly &lt;50%
+            <br />
+          </p>
+        </section>
+
+        <section>
+          <h3 class="bold">Max allowed capital for hedging in FDPortfolioHedgingCapital</h3>
+          <p>
+            20% of (portfolio holdings + cash in zerodha)
+            <br />
+            Surplus amount of profit must be invested in ETFs portfolio with Zerodha
+          </p>
+        </section>
+
+        <section class="orange">
+          <h3>Required 20% of (portfolio holdings + cash in zerodha)</h3>
+          <p id="ETFsPositionalCashTradingPlanRequired20PercentOfPortfolioHoldingsPlusCashInZerodha" style="padding: 1rem"></p>
+        </section>
+        <section class="orange">
+          <h3>Present in 🎁📈 FD (ETFsCashPortfolioHedgingCapital)</h3>
+          <p id="ETFsPositionalCashTradingPlanPresentIn🎁📈FdETFsCashPortfolioHedgingCapital" style="padding: 1rem"></p>
+        </section>
+        <section class="orange">
+          <h3>Is Allowed to Open Hedging Account with Fyers</h3>
+          <p id="ETFsPositionalCashTradingPlanIsAllowedToOpenHedgingAccountWithFyers" style="padding: 1rem"></p>
+        </section>
+        <section>
+          <h3 class="bold">Which broker to use for Hedging</h3>
+          <p>Fyers</p>
+        </section>
+
+        <section>
+          <h3 class="bold">Which broker to use for Hedging</h3>
+          <p>Fyers</p>
+        </section>
+
+        <section>
+          <h3 class="bold">When to open account with Fyers for hedging?</h3>
+          <p>
+            When FDPortfolioHedgingCapital >= 20% of Net Worth
+            <br />
+
+            For e.g. if we're having total ETFs portfolio of ₹5L then open account with Fyers iff we're having FDPortfolioHedgingCapital worth ₹25k
+          </p>
+        </section>
+
+        <section>
+          <h3>
+            one followed the treading plan split the principal amount 50% into gold/silver and remaining 50% into equity niftybees bankbees juniorbees and midcapbees, took entry according to trading plan and pyramid when there was positive 1%, today negative -3% M2M around -₹8k, one want to know as
+            darvas EXIT the boxes using Trailng SL how about me, as we're not willing to book loss on Index ETF trading as one want to protect one's precious capital, but one want to ask some solution,
+            <span class="bold">few days ago one's unrealized M2M was positive 1% around ₹2.7k and today its negaive -₹8k its too much, what is the solution?"</span>
+          </h3>
+          <p>
+            Refer :
+            <a href="#ETFsPositionalCashTradingPlanHedgingCriteria">HEDGING CRITERIA</a>
+          </p>
+        </section>
+
+        <section>
+          <h3 class="bold">Which contract to choose for Hedging</h3>
+          <p>choose next month contract</p>
+          <ol>
+            <li>MCX goldpetal/silverMicro futures</li>
+            <li>ATM PE Next month Expiry for nifty/bankNifty/niftyNext50/midcapNifty</li>
+          </ol>
+        </section>
+        <section>
+          <h3 class="bold">HEDGING CRITERIA</h3>
+          <ol>
+            <li>Hedging can be done when Weekly timeframe candle forms kind of shooting star and then one will wait for the candle to give closing.</li>
+            <li>
+              <p>Next week Monday on Fyers terminal, after 03:00PM if LTP is below previous week shooting star candle LOW then allowed Hedging as follows:</p>
+              <ol class="alphabet">
+                <li>in case of Equity : buy ATM PE for Nifty/BankNifty/NiftyNext50/MidCapNifty</li>
+                <li>in case of Gold/Silver : SHORT Gold/Silver</li>
+              </ol>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h3 class="bold">HEDGING CRITERIA FOR STOCK ETFS</h3>
+          <p>
+            In case of equity index ETFs only PUTS buying is allowed.
+            <br />
+            Buy Monthly Next Month ATM PE
+          </p>
+        </section>
+
+        <section>
+          <h3 class="bold">HEDGING CRITERIA FOR GOLD/SILVE</h3>
+          <p>
+            Hedging of gold and silver is allowed by SHORTING equivalent amount of Gold/silver futures in MCX with FDPortfolioHedgingCapital.
+            <br />
+            Criteria is as follows:
+          </p>
+          <ol>
+            <li>
+              <p>Must have enough capital in FDPortfolioHedgingCapital for</p>
+              <ol class="alphabet">
+                <li>margin requirements to SHORT equivalent amount of GOLD/SILVER as in portfolio</li>
+                <li>SL of weekly shooting star candle high + 3 points additional margin</li>
+              </ol>
+            </li>
+            <li>Hedging is allowed in Fyers terminal only</li>
+            <li>SHORTING is only allowed in gold/silver because one allowed to SHORT equivalent amount of futures as one having delivery</li>
+          </ol>
+          <p>
+            Example:
+            <br />
+            one have invested ₹1.20L physical delivery of goldbees holding. Then one must short ₹1.20L worth of gold futures with SL above shooting star weekly candle high + 3 points and SL capital needs to be added in total margin computation assume
+            <br />
+          </p>
+          <ol class="alphabet">
+            <li>margin required for SHORT ₹1.20L of gold having 12 quantity is ₹12K and</li>
+            <li>SL of shooting star weekly candle high + 3 points is ₹5k, then total margin reqruied = ₹12k + ₹5k = ₹17k</li>
+          </ol>
+        </section>
+        <section>
+          <h3 class="bold">HEDGE EXIT CRITERIA</h3>
+          <p>
+            Case #1 SL HIT (Weekly Shooting Star Candle High +3 points)
+            <br />
+            In case of SHORT GOLD/SILVER
+            <br />
+            <br />
+            Case #2 Potential Sign of Trend Reversal
+            <br />
+            on 15m timeframe, Market opens gap up and gives closing above yesterday closing price, if so then next day one allowed to EXIT one's HEDGE around 03:00PM onwards
+            <br />
+            <br />
+            Case #3 Expiry auto square off
+            <br />
+            In case of ATM PUTS
+            <br />
+          </p>
+          <ol class="alphabet">
+            <li>If Market keeps falling and its End of the month means Expiry of HEDGE then do nothing and let it be automatically be squared off by the exchange</li>
+            <li>OR allowed to manually EXIT after 03:00 PM</li>
+          </ol>
+
+          <p>IMPORTANT NOTE: GOLD/SILVER SHORT positions hedges needs to be closed one week before expiry for better liquidity and avoiding mandatory taking physical delivery from exchange.</p>
+        </section>
+
+        <section>
+          <h3 class="bold">IS EXITING HEDGE AT LOSS ALLOWED</h3>
+          <p>Allowed only IF</p>
+          <ol class="alphabet">
+            <li>SL HIT in case of GOLD/SILVER</li>
+            <li>
+              Expiry auto square off ATM PE for Equity
+              <br />
+              (OR)
+              <br />
+              one week (7 working days) before Expiry in case of GOLD/SILVER Futures
+            </li>
+          </ol>
+        </section>
+      </section>
+
+      <section>
+        <h2 id="ETFsPositionalCashTradingPlanMoneyManagementStrategy(ZerodhaCapitalBorrowingStrategy)">MONEY MANAGEMENT STRATEGY (ZERODHA CAPITAL BORROWING STRATEGY)</h2>
+
+        <section>
+          <h3 class="bold">Borrow based on Trading capital in Zerodha only</h3>
+          <p>for computation of debt : equity ratio for zerodha capital, equity is the Trading capital, holdigns in zerodha only</p>
+        </section>
+        <section class="orange">
+          <h3 class="bold">🌳 Zerodha ETFs Holdings</h3>
+          <p id="ETFsPositionalCashTradingPlan🌳ZerodhaEtfsHoldings"></p>
+        </section>
+
+        <section class="orange">
+          <h3 class="bold">Zerodha Cash</h3>
+          <p id="ETFsPositionalCashTradingPlanZerodhaCash"></p>
+        </section>
+        <section class="orange">
+          <h3 class="bold">at present zerodha capital Loan Close amount (DEBT)</h3>
+          <p id="ETFsPositionalCashTradingPlanAtPresentZerodhaCapitalLoanCloseAmount(Debt)"></p>
+        </section>
+        <section class="orange">
+          <h3 class="bold">EQUITY</h3>
+          <p id="ETFsPositionalCashTradingPlanEquity"></p>
+        </section>
+        <section class="orange">
+          <h3 class="bold">zerodha capital debt : equity (present)</h3>
+          <p id="ETFsPositionalCashTradingPlanZerodhaCapitalDebt:Equity(Present)"></p>
+        </section>
+        <section>
+          <h3 class="bold">How to compute debit: equity ratio</h3>
+          <p>
+            debt = at present zerodha capital Loan Close amount
+            <br />
+            equity = (Holdings + Cash in Zerodha) - debt
+            <br />
+            = (debt/equity)*100
+          </p>
+        </section>
+
+        <section>
+          <h3 class="bold">
+            IF current debt : equity ratio is x% then how much more currency one can borrow for
+            <br />
+            1. 50% debt : equity
+            <br />
+            2. 75% debut : equity ratio"
+          </h3>
+          <p>
+            first find out current phase of Zerodha ETFs Positional Trading (is it, phase: #1, #2, #3, #4)
+            <br />
+            &emsp; ELSE IF phase #2 then max 50% of equity
+            <br />
+            &emsp; ELSE IF phase #3 then max 75% of equity
+            <br />
+            &emsp; ELSE ₹0
+          </p>
+        </section>
+        <section>
+          <h3 class="bold">current phase of Zerodha ETFs Positional Trading</h3>
+          <select name="currentPhaseOfZerodhaETFsPositionalTrading" id="selectCurrentPhaseOfZerodhaETFsPositionalTrading" style="width: 15rem; font-size: 1.2rem">
+            <option value="" disabled selected>Select a Phase</option>
+            <option value="phase#1">Phase #1</option>
+            <option value="phase#2">Phase #2</option>
+            <option value="phase#3">Phase #3</option>
+            <option value="phase#4">Phase #4</option>
+            <option value="phase#5">Phase #5</option>
+          </select>
+          <p id="actionAccordingToCurrentPhaseTradingPlanRules" class="orange"></p>
+        </section>
+
+        <section class="orange">
+          <h3 class="bold">howMuchCurrencyOneAllowedToBorrowFromZerodhaCapital</h3>
+          <p id="howMuchCurrencyOneAllowedToBorrowFromZerodhaCapital"></p>
+        </section>
+
+        <section>
+          <h3>
+            <span class="bold">BORROWING STRATEGY</span>
+            <br />
+            <span class="italic">so that we're having higher probability of getting 10% returns faster</span>
+          </h3>
+          <p>
+            PHASE #1, Invest Own Capital
+            <br />
+            &emsp;first invest 100% of one's own principal amount in ETFs according to percentage of each ETF in portfolio allocation strategy
+            <br />
+            <br />
+
+            PHASE #2, Take Loan from Zerodha Capital (maintain debit : equity = 50%)
+            <br />
+            &emsp;when (portfolio unrealized P&L &lt;= -7.5%) then keep taking loan for ETFs investments from zerodha capital till debit : equity ratio is &lt;50%
+            <br />
+            <br />
+            PHASE #3, Take another Loan from Zerodha Capital (maintain debit : equity = 75%)
+            <br />
+            &emsp;when (debt : equity ratio = 50%) AND (overall portfolio >= 1%) then
+            <br />
+            &emsp;&emsp;IF TIMEBASE EXIT limit has passed THEN
+            <br />
+            &emsp;&emsp;&emsp;EXIT the weakest ETF acccoring to WEAKEST SCRIPT SELECTION CRITERIA
+            <br />
+            &emsp;&emsp;ELSE
+            <br />
+            &emsp;&emsp;&emsp;once again start taking loan for ETFs investments from zerodha capital till one's debt : equity ratio &lt; 75%
+            <br />
+            <br />
+            PHASE #4, Gradual Loan Repayment to Zerodha Capital (debt :equity restore to 50%)
+            <br />
+            &emsp;when (debt : equity touched 75%) then
+            <br />
+            &emsp;&emsp; a. start EXITING Weakest ETFs and repay zerodha capital loan currency till one's debt: equity ratio is > 50%, for EXITING weakest ETF allowed to EXIT daily or weekly iff satisfying
+            <a href="#ETFsPositionalCashTradingPlanWeakestScriptSelectionCriteria">WEAKEST SCRIPT SELECTION CRITERIA</a>
+            <br />
+            &emsp;&emsp; b. once it reached 50% refer
+            <a href="#ETFsPositionalCashTradingPlanExitStrategy">EXIT STRATEGY</a>
+            <br />
+            now this way we're having the strongest performing ETFs and would help one get 10% returns faster
+            <br />
+            <br />
+
+            PHASE #5, TimebasedExit Triggered, Urgent Loan Repayment to zerodha capital (maintain debt : equity to 0%)
+            <br />
+            &emsp;a. start EXITING Weakest ETFs and repay full amount to zerodha capital. for EXITING weakest ETF allowed to EXIT daily or weekly iff satisfying
+            <a href="#ETFsPositionalCashTradingPlanWeakestScriptSelectionCriteria">WEAKEST SCRIPT SELECTION CRITERIA</a>
+            <br />
+            &emsp;b. when debt : equity reached 0% then follow keep holdings intact and follow TImebased EXIT strategy by waiting for 7.5% ROI then EXIT
+            <br />
+            <br />
+            Important Criteria that needs to be fulfilled before taking Loan:
+            <br />
+            make sure that zerodha capital loan contract end length is >=3 months i.e. one need more than 3 months period minimum to repay the entire loan amount, otherwise request for new of loan and get 12 months period for repayment
+          </p>
+        </section>
+      </section>
     </main>
-
-    <script>
-      async function getCellValue() {
-        const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRtq3DQ83J2Og1CQ0mpNn6XApPDNYMALO0XXmmgJQAYWyK4VJkABYLN5YTkTgCpt-I28l7clf07sr3C/pub?gid=0&single=true&output=csv";
-        const response = await fetch(url);
-        const text = await response.text();
-
-        // Split CSV into rows
-        const rows = text.split("\n").map((r) => r.split(","));
-
-        // update target date
-        const b3 = rows[2][1];
-        document.getElementById("ETFsPositionalCashTradingPlanTimeBasedExitAllowedOnlyAfterFollowingDate").innerText = b3;
-
-        // css highlighting
-        const today = new Date();
-        const targetDate = new Date(b3);
-        today.setHours(0, 0, 0, 0);
-        if (today >= targetDate) {
-          document.getElementById("ETFsPositionalCashTradingPlanTimeBasedExitAllowedOnlyAfterFollowingDate").style.backgroundColor = "#B4EEEE";
-        }
-
-        // difference in days between two dates
-        today.setHours(0, 0, 0, 0);
-        targetDate.setHours(0, 0, 0, 0);
-        const msPerDay = 1000 * 60 * 60 * 24;
-        const diff = (targetDate - today) / msPerDay; // could be negative if d1 > d2
-
-        document.getElementById("ETFsPositionalCashTradingPlanDaysLeftForTimeBasedExit").innerText = diff + " days";
-      }
-
-      getCellValue();
-    </script>
   </body>
 </html>
