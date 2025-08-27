@@ -134,7 +134,7 @@
         const today = new Date();
         const targetDate = new Date(b3);
         today.setHours(0, 0, 0, 0);
-        if (today >= targetDate) {
+        IF (today >= targetDate) {
           document.getElementById("ETFsPositionalCashTradingPlanTimeBasedExitAllowedOnlyAfterFollowingDate").style.backgroundColor = "#B4EEEE";
         }
         //Max allowed capital for hedging in FD-PortfolioHedgingCapital (20% of (portfolio holdings + cash in zerodha) )
@@ -192,15 +192,15 @@
         selectCurrentPhaseOfZerodhaETFsPositionalTrading.addEventListener("change", () => {
           const value = selectCurrentPhaseOfZerodhaETFsPositionalTrading.options[selectCurrentPhaseOfZerodhaETFsPositionalTrading.selectedIndex].text;
           let data = "";
-          if (value.toLowerCase() == "phase #1") {
+          IF (value.toLowerCase() == "phase #1") {
             data = "Invest Own Capital";
-          } else if (value.toLowerCase() == "phase #2") {
+          } else IF (value.toLowerCase() == "phase #2") {
             data = "Take Loan from Zerodha Capital (maintain debit : equity = 50%)";
-          } else if (value.toLowerCase() == "phase #3") {
+          } else IF (value.toLowerCase() == "phase #3") {
             data = "Take another Loan from Zerodha Capital (maintain debit : equity = 75%)";
-          } else if (value.toLowerCase() == "phase #4") {
+          } else IF (value.toLowerCase() == "phase #4") {
             data = "Gradual Loan Repayment to Zerodha Capital (debt : equity restore to 50% || 0%)";
-          } else if (value.toLowerCase() == "phase #5") {
+          } else IF (value.toLowerCase() == "phase #5") {
             data = "TimebasedExit Triggered, Urgent Loan Repayment to zerodha capital (maintain debt : equity to 0%";
           }
           actionAccordingToCurrentPhaseTradingPlanRules.innerText = data;
@@ -235,6 +235,8 @@
           <li><a href="#ETFsPositionalCashTradingPlanExitStrategy">EXIT STRATEGY</a></li>
           <li><a href="#ETFsPositionalCashTradingPlanPositionSizingAndPortfolioCapitalAllocationStrategy">POSITION SIZING & PORTFOLIO CAPITAL ALLOCATION STRATEGY</a></li>
           <li><a href="#ETFsPositionalCashTradingPlanEntryStrategy">ENTRY STRATEGY</a></li>
+          <li><a href="#ETFsPositionalCashTradingPlanStrictlyProhibited">STRICTLY PROHIBITED</a></li>
+          <li><a href="#ETFsPositionalCashTradingPlanMiscellaneous">MISCELLANEOUS</a></li>
         </ul>
       </nav>
     </header>
@@ -275,7 +277,7 @@
             <li>Only business where all transactions are in cash, just close position today & after 2 days get profits payouts credited to bank account, where Exchange taking responsibility of transactions.</li>
             <li>Only business which provides liquidity can sell entire ETFs portfolio today & receive currency in bank account after two working days</li>
             <li>It's among those businesses where saturday, sunday, every gazetted government holidays are holidays as well</li>
-            <li>It's the only business which gives daily feedback on what to improve on & punishes/teaches if did wrong execution of trading plan & reward honestly if executed trading plan rules perfectly.</li>
+            <li>It's the only business which gives daily feedback on what to improve on & punishes/teaches IF did wrong execution of trading plan & reward honestly IF executed trading plan rules perfectly.</li>
             <li>Once learnt trading skillset, one may earn active/passive income even in old age by trading index/commodity ETFs & INTRADAY MCX gold Futures, which is quite impressive</li>
             <li>It provides leverage by futures trading means one may use other people currency to acquire wealth</li>
             <li>With just laptop & internet connection one may manage passive ETFs positional trading from anywhere around the globe</li>
@@ -295,7 +297,7 @@
           <ol>
             <li>All of colleagues like kameshwar, neanshika, rana are earning good salaries, most been married, some having kids, because they were disciplined & consistent. Now desire to acquire wealth by being disciplined & consistently following trading plan rules</li>
             <li>IFF become consistently profitable trader by trading ETFs positionally & INTRADAY MCX gold futures, might be able to support wife, kids (IFF got married), oneself, parents & may contribute to nature as well.</li>
-            <li>IFF got married, It allows to spend time with wife, kids, if earning decent profits from trading feels happy</li>
+            <li>IFF got married, It allows to spend time with wife, kids, IF earning decent profits from trading feels happy</li>
             <li>It's among few of those limited businesses which allows spend quality time with nature/family/oneself</li>
             <li>It's the business which may help to get currency to acquire Medicare insurance for whole family & help in case of medical emergency</li>
             <li>IFF married & had kids, It may help finance education of kids</li>
@@ -312,8 +314,8 @@
             <li>realised that as of june 2025, don't own a house, car, gold, silver, land, spare cash but deepdown within having strong faith that this business can help acquire wealth, IFF be disciplined by keeping risk per trade &lt;= -0.89% & perfect execution of trading plan rules.</li>
             <li>may have world tour from this business & may still control ETFs passive trading anywhere around the globe</li>
             <li>trading ETFs positionally, MCXGoldFuturesIntraday may fulfill vision board objectives</li>
-            <li>Deep down within just want to earn living & acquire wealth from trading ETFs positionally & MCXGoldFuturesIntraday only, now realised if be disciplined by following trading plan can acquire wealth.</li>
-            <li>It provides an opportunity to earn income passively by positional ETFs trading if want to take a world tour or vacations outside home, one may</li>
+            <li>Deep down within just want to earn living & acquire wealth from trading ETFs positionally & MCXGoldFuturesIntraday only, now realised IF be disciplined by following trading plan can acquire wealth.</li>
+            <li>It provides an opportunity to earn income passively by positional ETFs trading IF want to take a world tour or vacations outside home, one may</li>
             <li>
               INTRADAY MCX gold futures INTRADAY trading with 10% of net worth contribute:
               <ol>
@@ -445,7 +447,7 @@
             12.5% for mid150bees
             <br />
             <br />
-            Now if requires to develop calculator for this then develop
+            Now IF requires to develop calculator for this then develop
             <br />
             ( or )
             <br />
@@ -511,11 +513,11 @@
         </section>
 
         <section id="ETFsPositionalCashTradingPlanWeakestScriptSelectionCriteria">
-          <h3 id="ETFsPositionalCashTradingPlanWeakestScriptSelectionCriteria">WEAKEST SCRIPT SELECTION CRITERIA</h3>
+          <h3>WEAKEST SCRIPT SELECTION CRITERIA</h3>
           select weakest script among all 6 scripts (A,B,C,D,E,F) satisfying following rules
           <ol>
             <li>Unrealised reward >=2% AND &lt;=3%</li>
-            <li>If multiple ETFs falls between 2% to 3% then choose ETF with maximum invested amount</li>
+            <li>IF multiple ETFs falls between 2% to 3% then choose ETF with maximum invested amount</li>
             <li>
               e.g.
               <br />
@@ -558,7 +560,7 @@
           <ol>
             <li>
               <ol class="alphabet">
-                <li>EXIT Partially : if partial EXIT is sufficient for loan repayment, otherwise EXIT 100%</li>
+                <li>EXIT Partially : IF partial EXIT is sufficient for loan repayment, otherwise EXIT 100%</li>
                 <li>
                   after market closes i.e. 03:40PM onwards, place the GTT OCO order as follows
                   <ol class="roman">
@@ -713,7 +715,7 @@
           </h3>
           <h3>
             Can one
-            <span class="bold">book profit on a single script if it showing 10% plus profit?</span>
+            <span class="bold">book profit on a single script IF it showing 10% plus profit?</span>
           </h3>
           <h3>
             <span class="bold">What to do when</span>
@@ -753,7 +755,7 @@
         <section>
           <h3>
             <span class="bold">What to do</span>
-            if one buy ETF using loan currency at the top and
+            IF one buy ETF using loan currency at the top and
             <span class="bold">there is -50% drop in portfolio</span>
             from where one bought
           </h3>
@@ -781,7 +783,7 @@
         <section>
           <h3>
             <span class="bold">What to do</span>
-            if one buy ETF using loan currency at the top and
+            IF one buy ETF using loan currency at the top and
             <span class="bold">there is -50% drop in portfolio</span>
             from where one bought
           </h3>
@@ -956,7 +958,7 @@
         <section>
           <h3 class="bold">When to open account with Fyers for hedging?</h3>
           <code>When FDPortfolioHedgingCapital >= 20% of Net Worth</code>
-          <p>For e.g. if one having total ETFs portfolio of ₹5L then open account with Fyers iff one having FDPortfolioHedgingCapital worth ₹25k</p>
+          <p>For e.g. IF one having total ETFs portfolio of ₹5L then open account with Fyers iff one having FDPortfolioHedgingCapital worth ₹25k</p>
         </section>
 
         <section>
@@ -984,7 +986,7 @@
           <ol>
             <li>Hedging can be done when Weekly timeframe candle forms kind of shooting star and then one will wait for the candle to give closing.</li>
             <li>
-              <p>Next week Monday on Fyers terminal, after 03:00PM if LTP is below previous week shooting star candle LOW then allowed Hedging as follows:</p>
+              <p>Next week Monday on Fyers terminal, after 03:00PM IF LTP is below previous week shooting star candle LOW then allowed Hedging as follows:</p>
               <ol class="alphabet">
                 <li>in case of Equity : buy ATM PE for Nifty/BankNifty/NiftyNext50/MidCapNifty</li>
                 <li>in case of Gold/Silver : SHORT Gold/Silver</li>
@@ -1041,7 +1043,7 @@
             <br />
             Case #2 Potential Sign of Trend Reversal
             <br />
-            on 15m timeframe, Market opens gap up and gives closing above yesterday closing price, if so then next day one allowed to EXIT one's HEDGE around 03:00PM onwards
+            on 15m timeframe, Market opens gap up and gives closing above yesterday closing price, IF so then next day one allowed to EXIT one's HEDGE around 03:00PM onwards
             <br />
             <br />
             Case #3 Expiry auto square off
@@ -1050,7 +1052,7 @@
             <br />
           </p>
           <ol class="alphabet">
-            <li>If Market keeps falling and its End of the month means Expiry of HEDGE then do nothing and let it be automatically be squared off by the exchange</li>
+            <li>IF Market keeps falling and its End of the month means Expiry of HEDGE then do nothing and let it be automatically be squared off by the exchange</li>
             <li>OR allowed to manually EXIT after 03:00 PM</li>
           </ol>
 
@@ -1235,7 +1237,7 @@
         <section>
           <h3>
             When having opportunity to UNPLEDGE security in zerodha capital to reduce loan amount
-            <span class="bold">if one's collateral is appreciated which security to UNPLEDGE</span>
+            <span class="bold">IF one's collateral is appreciated which security to UNPLEDGE</span>
             one with 10% haircut or one with 20% haircut.
           </h3>
           <p>
@@ -1284,7 +1286,7 @@
             <br />
             Say there 7 instances of silverbees when one tried to UNPLEDGE then one was charged for all of them ie. ₹40 x 7,
             <br />
-            same thing happens if taken topup 7 times with those instances, so its double slap with processing fee
+            same thing happens IF taken topup 7 times with those instances, so its double slap with processing fee
             <br />
             <br />
             Next time be aware and only do pledging mindfully because to UNPLEDGE one have to repay as well.
@@ -1297,7 +1299,7 @@
             <a href="#ETFsPositionalCashTradingPlanZerodhaCapitalEmiRepaymentCriteria">ZERODHA CAPITAL EMI REPAYMENT CRITERIA</a>
             )
             <br />
-            There is also chance that near the end month of loan tennure and one buy ETF using loan currency at the top and there is 50% fall in portfolio from where one bought just PLEDGE more holdings to cover it. or EXIT according to shooting star candle if any ETF already in profit of >=7.5%
+            There is also chance that near the end month of loan tennure and one buy ETF using loan currency at the top and there is 50% fall in portfolio from where one bought just PLEDGE more holdings to cover it. or EXIT according to shooting star candle IF any ETF already in profit of >=7.5%
             (Refer EXIT/Hedging Criterias)
             <br />
             Now here is the strategy
@@ -1312,7 +1314,7 @@
               <a href="#ETFsPositionalCashTradingPlanEntryStrategy">ENTRY STRATEGY</a>
             </li>
             <li>
-              If one's portfolio drops by &lt;= -7.5% then Borrow from zerodha capital according to one's
+              IF one's portfolio drops by &lt;= -7.5% then Borrow from zerodha capital according to one's
               <a href="#ETFsPositionalCashTradingPlanBorrowingStrategy">BORROWING STRATEGY</a>
             </li>
             <li>maintain debt:equity ratio &lt; 50%</li>
@@ -1373,11 +1375,11 @@
         <section>
           <h3>
             What
-            <span class="bold">if one didn't make 10% a year and ends up -10%</span>
+            <span class="bold">IF one didn't make 10% a year and ends up -10%</span>
             after including expenses of EMI payments to zerodha capital and transaction charges"
           </h3>
           <p>
-            one just loose 10% that year, this is good thing because iff one having track record of earlier booking 10% profits TARGETs and this only take one of one's profits approximately. repeat the process, invest 100% of one's remaining principal amount and if one's portfolio is &lt;=-7.5% then
+            one just loose 10% that year, this is good thing because iff one having track record of earlier booking 10% profits TARGETs and this only take one of one's profits approximately. repeat the process, invest 100% of one's remaining principal amount and IF one's portfolio is &lt;=-7.5% then
             take loan from zerodha captial equal to 50% of debt:equity and reinvest it for 10% overall portfolio profit TARGET.
             <br />
             <br />
@@ -1392,9 +1394,9 @@
         <section>
           <h3 class="bold">what to do when one's holdings in negative m2m</h3>
           <p>
-            If overall portfolio is negative by &lt;= -7.5% then take loan from zerodha capital and do averaging
+            IF overall portfolio is negative by &lt;= -7.5% then take loan from zerodha capital and do averaging
             <br />
-            If one having hedging capital in FD then make sure to have portfolio hedged accordingly
+            IF one having hedging capital in FD then make sure to have portfolio hedged accordingly
             <br />
             <br />
 
@@ -1443,15 +1445,15 @@
         </section>
 
         <section>
-          <h3>What would happen if one borrowed more than one's principal amount or PLEDGED ETFs bought using loan to get more loan</h3>
+          <h3>What would happen IF one borrowed more than one's principal amount or PLEDGED ETFs bought using loan to get more loan</h3>
           <p>
-            Zerodha would not let one sell any holdings if LTV &lt; 45% and would liquidate all of one's PLEDGED holdings if threashold of 50% plus reached, and might consider one as defauter as he would ask for payin before the liquidation and if not provided, Zerodha Capital might not consider
+            Zerodha would not let one sell any holdings IF LTV &lt; 45% and would liquidate all of one's PLEDGED holdings IF threashold of 50% plus reached, and might consider one as defauter as he would ask for payin before the liquidation and IF not provided, Zerodha Capital might not consider
             offering one loan amount next time, so be cautious and keep the debt to equity ratio under 50%
             <br />
             <br />
             Here is somewhat mathematical proof :
             <br />
-            one has to maintain zerodha capital LTV(Loan to value Ratio). one have to maintain LTV below 50% and if it goes above 50% then one have to pay in to zerodha capital, and also if it goes above 60% they will automatically sell one's PLEDGED holdings at loss.
+            one has to maintain zerodha capital LTV(Loan to value Ratio). one have to maintain LTV below 50% and IF it goes above 50% then one have to pay in to zerodha capital, and also IF it goes above 60% they will automatically sell one's PLEDGED holdings at loss.
           </p>
           <code>
             LTV = loan disbursed/PLEDGED value of security
@@ -1465,14 +1467,14 @@
             LTV : 1.21/2.69 = 44%
             <br />
             <br />
-            Now assume if there is 10% drop in PLEDGED holding value
+            Now assume IF there is 10% drop in PLEDGED holding value
             <br />
             Updated PLEDGED value of security: ₹2.42L
             <br />
             LTV : 1.21/2.42 = 50%
             <br />
             <br />
-            Now assume if there is 20% drop in PLEDGED holding value
+            Now assume IF there is 20% drop in PLEDGED holding value
             <br />
             Updated PLEDGED value of security: ₹2.15L
             <br />
@@ -1487,24 +1489,24 @@
           </code>
           <p>
             <br />
-            Now if one took loan, buy ETF and PLEDGE them as well to get more loan and in worst case scenario there is 20% portfolio drop and also it's near end of 12 months loan tennure then they would not allow one to sell PLEDGED holding till one repay their principal amount. To UNPLEDGE one's
+            Now IF one took loan, buy ETF and PLEDGE them as well to get more loan and in worst case scenario there is 20% portfolio drop and also it's near end of 12 months loan tennure then they would not allow one to sell PLEDGED holding till one repay their principal amount. To UNPLEDGE one's
             LTV ratio must be within the permissible limit of 45%. Means they will ask one for more payin or more pledging. So follow the rule that max allowed limit of borrowing is 45% of one's principal amount which is one's hard earned Salary or trading profits."
           </p>
         </section>
 
         <section id="ETFsPositionalCashTradingPlanIfOnes10PercentTargetIsntAchievedAndThereJust15DaysLeftForZerodhaLoanAgreementToExpire">
-          <h3>If one's 10% TARGET isn't achieved and there just 15 days left for zerodha loan agreement to expire?</h3>
+          <h3>IF one's 10% TARGET isn't achieved and there just 15 days left for zerodha loan agreement to expire?</h3>
           <p>When 15days left for full loan repayment to zerodha capital, start EXITING the position and repaying back to zerodha capital even in loss. start over process according to ENTRY STRATEGY</p>
         </section>
         <section>
-          <h3>What to do if portfolio is down &lt;=-7.5% and Zerodha Capital loan agreement is about to expire in next two month?</h3>
+          <h3>What to do IF portfolio is down &lt;=-7.5% and Zerodha Capital loan agreement is about to expire in next two month?</h3>
           <p>
-            First apply for new contract from zerodha so that one have atleast 12 months buffer, if they do not approve then let it be, as one here to protect one's precious capital and market can go down alot then one can imagine and one need minimum of 3 months buffer by zerodha captial loan
+            First apply for new contract from zerodha so that one have atleast 12 months buffer, IF they do not approve then let it be, as one here to protect one's precious capital and market can go down alot then one can imagine and one need minimum of 3 months buffer by zerodha captial loan
             closing and repayment
             <br />
             <br />
             Refer:
-            <a href="#ETFsPositionalCashTradingPlanIfOnes10PercentTargetIsntAchievedAndThereJust15DaysLeftForZerodhaLoanAgreementToExpire">If one's 10% TARGET isn't achieved and there just 15 days left for zerodha loan agreement to expire?</a>
+            <a href="#ETFsPositionalCashTradingPlanIfOnes10PercentTargetIsntAchievedAndThereJust15DaysLeftForZerodhaLoanAgreementToExpire">IF one's 10% TARGET isn't achieved and there just 15 days left for zerodha loan agreement to expire?</a>
           </p>
         </section>
         <section>
@@ -1532,7 +1534,7 @@
           <ol>
             <li>keep invested in market not matter it is at moon or earth,</li>
             <li>
-              if there is correction and one's entire portfolio is &lt;=-7.5% then
+              IF there is correction and one's entire portfolio is &lt;=-7.5% then
               <ol class="alphabet">
                 <li>take loan from zerodha capital iff there more than 3 months for contract to end, then do averaging,</li>
                 <li>otherwise reqeust zerodha capital to renew of contract so that one get 12 months period for repayment</li>
@@ -1648,7 +1650,7 @@
           <ol>
             <li>Principal amount will be: ₹20.56 Lakhs (considering just 60% of profits reinvested)</li>
             <li>₹10.07 Lakhs will be already taken as 40% profits payouts</li>
-            <li>it gives peace of mind as 10% is achievable, considering now also allowed individual ETF EXIT for profit booking if having unrealized profit of >=10% using GTT OCO order</li>
+            <li>it gives peace of mind as 10% is achievable, considering now also allowed individual ETF EXIT for profit booking IF having unrealized profit of >=10% using GTT OCO order</li>
           </ol>
         </section>
         <section>
@@ -1724,7 +1726,7 @@
           </ol>
         </section>
         <section>
-          <h3 class="bold">What if one broke one's rules and loose one's principal amount</h3>
+          <h3 class="bold">What IF one broke one's rules and loose one's principal amount</h3>
           <p>take full responsibility of one's actions, now only one will protect one's principal amount and grow with it, or hahah will suffer miserably for one's own negligence, one will protect one's principal amount and make it grow via compounding</p>
         </section>
         <section>
@@ -1777,7 +1779,7 @@
             <br />
             <span class="bold">Important Note:</span>
             as one have taken loan from zerodha capital by pledging one's secuirities, one would not be able to sell them all at once, without first unpledging them by repaying loan to zerodha capital and it might take 2-3 days for currency to be credited to one's bank account then repayment of
-            zerodha loan then unpledging of security and able to EXIT, at that time the overall return percentage might have changed so keep mind to EXIT first lower percentage Reward scripts as they the one who might turn downside so first EXIT those scripts, no matter if they in negative just EXIT
+            zerodha loan then unpledging of security and able to EXIT, at that time the overall return percentage might have changed so keep mind to EXIT first lower percentage Reward scripts as they the one who might turn downside so first EXIT those scripts, no matter IF they in negative just EXIT
             them first.
             <br />
             <br />
@@ -1870,7 +1872,7 @@
         <section>
           <h3 class="bold">How to make step wise entry in position</h3>
           <ol>
-            <li>Just invest 100% of one's own principal amount same day according to investment percentage, if there is gap up and some of the scripts not filled then try next day after market closing.</li>
+            <li>Just invest 100% of one's own principal amount same day according to investment percentage, IF there is gap up and some of the scripts not filled then try next day after market closing.</li>
             <li>
               When one's portfolio is negative under &lt;= -7.5% and have taken loan from zerodha capital assuming contract is still having more than 3 months to repay loan, then PLEDGE the portfolio and again invest 100% of the loan amount same day according to one's position sizing criteria.
             </li>
@@ -1901,6 +1903,242 @@
             ,
             <a href="#ETFsPositionalCashTradingPlanRiskManagementStrategy">RISK MANAGEMENT STRATEGY</a>
           </p>
+        </section>
+      </section>
+      <section id="ETFsPositionalCashTradingPlanStrictlyProhibited">
+        <h2>STRICTLY PROHIBITED</h2>
+        <section>
+          <h3>
+            Can one write
+            <span class="bold">covered calls for hedging</span>
+          </h3>
+          <p>
+            Strictly Prohibited
+            <br />
+            Reasons:
+            <br />
+            F&O isn't allowed in Zerodha, and with other brokers one don't have portfolio for margin PLEDGE, so just stick with buying ATM PE for hedging
+          </p>
+        </section>
+        <section>
+          <h3>
+            Can one
+            <span class="bold">PLEDGE holding for loan repayment EMI?"</span>
+          </h3>
+          <p>
+            Strictly Prohibited,
+            <br />
+            EXIT the weakest among two ETF partially for loan repayment
+          </p>
+        </section>
+        <section>
+          <h3>
+            Today one opened the terminal during market hours 03:25, took manual random entry for goldbees and disregard GTT and one's previous day plus .26% rule. worst take could be today be panic selling in market and one might have existed all the positions or headless chicken trading. what to
+            do , what is the solution to correct this so that in future,
+            <span class="bold">access to Market Data/Zerodha terminal during market hours be strictly prohibited.</span>
+          </h3>
+          <p>Strictly prohibited to open during market hours</p>
+          <ol>
+            <li>NSE/BSE website</li>
+            <li>Zerodha</li>
+            <li>Zerodha Capital</li>
+          </ol>
+          <p>
+            Take responsibility of one's actions as one have to protect one's precious capital, IF GTT for goldbees wasn't triggered that might be good for one as tomorrow there might be correction in goldbees. So kindly follow the trading plan and one only allowed to open terminal after 03:40 PM
+            for equity and 04:00PM for commodities.
+          </p>
+        </section>
+        <section>
+          <h3>
+            Can one
+            <span class="bold">access terminal OR place orders from smartphone</span>
+          </h3>
+          <p>Strictly prohibited</p>
+        </section>
+        <section>
+          <h3>
+            Can one
+            <span class="bold">PLEDGE holding for INTRADAY trading?</span>
+          </h3>
+          <p>Strictly prohibited</p>
+        </section>
+        <section>
+          <h3>
+            Can one
+            <span class="bold">SHORT on INTRADAY using cash</span>
+          </h3>
+          <p>Strictly prohibited</p>
+        </section>
+        <section>
+          <h3>
+            Can one
+            <span class="bold">EXIT Delivery holding at loss</span>
+          </h3>
+          <p>Strictly prohibited</p>
+        </section>
+        <section>
+          <h3>
+            Can one do
+            <span class="bold">INTRADAY with broker currency</span>
+          </h3>
+          <p>Strictly prohibited</p>
+        </section>
+        <section>
+          <h3>
+            can one do
+            <span class="bold">tiding all OR part of principal amount to wife/mother/nature</span>
+          </h3>
+          <p>Strictly prohibited</p>
+        </section>
+        <section>
+          <h3>
+            can one
+            <span class="bold">spend principal amount on oneself or in case of emergency</span>
+          </h3>
+          <p>
+            Allowed only in case of life or death situation,
+            <br />
+            otherwise Strictly prohibited"
+          </p>
+        </section>
+        <section>
+          <h3>
+            can one
+            <span class="bold">spend principal amount to buy ATM options for hedging</span>
+          </h3>
+          <p>Strictly prohibited</p>
+        </section>
+        <section>
+          <h3>
+            can one
+            <span class="bold">spend principal amount to trade index futures and options</span>
+          </h3>
+          <p>Strictly prohibited</p>
+        </section>
+        <section>
+          <h3>
+            can one
+            <span class="bold">check ETFs prices during market hours from NSE website?</span>
+          </h3>
+          <p>Strictly prohibited</p>
+        </section>
+        <section>
+          <h3>
+            Is one allowed to do
+            <span class="bold">INTRADAY trading in Zerodha</span>
+            and can one short sell or take leverage from broker or mtf on delivery?
+          </h3>
+          <p>
+            Strictly prohibited
+            <br />
+            Zerodha is meant for cash only ETF trading where one can only pyramid ETFs which in profit. or average when one's overall portfolio is down by >= -7.5%
+            <br />
+            <br />
+            MTF/Short sell/intraday leverage?
+            <br />
+            Strictly prohibited in zerodha
+            <br />
+            <br />
+            Am one allowed to do CNC buying intraday?
+            <br />
+            strictly prohibited as one's profits TARGET 10% of one's principal amount and one have max investment limit per script so INTRADAY cnc not allowed.
+          </p>
+        </section>
+        <section>
+          <h3>
+            can one
+            <span class="bold">spend principal amount for gold futures trading or commodity trading</span>
+          </h3>
+          <p>
+            Strictly prohibited,
+            <br />
+            Allowed Iff Only allowed iff one have shown discipline in last 100 trades by keeping one's risk per trade under -0.90%, then just max 10% of one's net worth amount is allowed to be given for MCX Gold Futures trading (some part of this currency to be taken from FD reserved for MCX Gold
+            Futures trading and Remaining one can take from Principal Amount)
+          </p>
+        </section>
+      </section>
+      <section id="ETFsPositionalCashTradingPlanMiscellaneous">
+        <h2>MISCELLANEOUS</h2>
+        <section>
+          <h3 class="bold">Keep individual ETF exposure under maximum allowed portfolio allocation percentage.</h3>
+          <p>
+            IF position in any ETF is greater than max portfolio allocation AND current ETF is in +2.5% unrealised profit then partial EXIT quantity to balance exposure to maximum allowed investment percentage.
+            <br />
+            <br />
+            What to do with the Partial EXIT capital?
+            <br />
+            Case #1 IF top up loan taken from zerodha capital THEN use 100% of partial EXIT capital to repay loan amount to zerodha capital.
+            <br />
+            Case #2 ELSE reinvest amount equally in all six ETFs according to portfolio allocation strategy
+            <br />
+            <br />
+            For example.
+            <br />
+            ABC ETF max. Allowed capital allocation is 12.5% and 14.5% is at present allocated AND ETF is having unrealised profit of +2.5% then partial EXIT to make to 12.5% capital allocation.
+          </p>
+        </section>
+        <section>
+          <h3 class="bold">always keep some ETF quantity while EXITING</h3>
+          <p>
+            example, IF for any ABC ETF, total quantity are 1137, then EXIT only 1130 quantity
+            <br />
+            min quantity to keep #1
+            <br />
+            max quantity ot keep #9
+          </p>
+        </section>
+        <section>
+          <h3 class="bold">
+            After reading trading plan,
+            <br />
+            IF (there is no electricity) &&
+            <br />
+            (there are pending GTT orders creation/update) THEN
+          </h3>
+          <p>Allowed to access zerodha terminal by turning laptop on via UPS mode and place/edit GTT orders</p>
+        </section>
+        <section>
+          <h3 class="bold">Instruments To Trade</h3>
+
+          <ol>
+            <li>GoldBees</li>
+            <li>SilverBees</li>
+            <li>NiftyBees</li>
+            <li>BankBees</li>
+            <li>JuniorBees</li>
+            <li>Mid150Bees</li>
+          </ol>
+        </section>
+        <section>
+          <h3 class="bold">Why one having devotion towards trading</h3>
+          <p>it's the only professional which gives one opportunity to have financial freedom and accumulate wealth, have freedom of time, and be one's own boss, equal opportunity to make wealth</p>
+        </section>
+        <section>
+          <h3>
+            What to do when
+            <span class="bold">GTT order triggered but not fulfilled</span>
+            as price moved higher and eventually order got cancelled at end of the day
+          </h3>
+          <p>it's part of the game, repeat the order for the next day after market closing</p>
+        </section>
+        <section>
+          <h3 class="bold">Timeframe for observing markets</h3>
+          <p>Weekly</p>
+        </section>
+        <section>
+          <h3>
+            one also doing MCX Gold futures INTRADAY trading,
+            <span class="bold">for backtesting can one open ONLY Upstox account during market hours?</span>
+          </h3>
+          <p>okay allowed, but make sure to open zerodha terminal only after market close preferably after 03:40PM</p>
+        </section>
+        <section>
+          <h3 class="bold">When to Review this journal</h3>
+          <p>Anytime</p>
+        </section>
+        <section>
+          <h3 class="bold">When to modify GTT orders and make any transactions to zerodha</h3>
+          <p>after market closing 03:40PM onwards</p>
         </section>
       </section>
     </main>
