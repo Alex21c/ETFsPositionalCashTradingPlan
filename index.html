@@ -232,6 +232,9 @@
           <li><a href="#ETFsPositionalCashTradingPlanMoneyManagementStrategy(ZerodhaCapitalLoanRepayment)">MONEY MANAGEMENT STRATEGY (ZERODHA CAPITAL LOAN REPAYMENT)</a></li>
           <li><a href="#ETFsPositionalCashTradingPlanMoneyManagementStrategy(ZerodhaCapitalMiscellaneous)">MONEY MANAGEMENT STRATEGY (ZERODHA CAPITAL MISCELLANEOUS)</a></li>
           <li><a href="#ETFsPositionalCashTradingPlanMoneyManagementStrategy">MONEY MANAGEMENT STRATEGY</a></li>
+          <li><a href="#ETFsPositionalCashTradingPlanExitStrategy">EXIT STRATEGY</a></li>
+          <li><a href="#ETFsPositionalCashTradingPlanPositionSizingAndPortfolioCapitalAllocationStrategy">POSITION SIZING & PORTFOLIO CAPITAL ALLOCATION STRATEGY</a></li>
+          <li><a href="#ETFsPositionalCashTradingPlanEntryStrategy">ENTRY STRATEGY</a></li>
         </ul>
       </nav>
     </header>
@@ -388,6 +391,68 @@
       <section>
         <h2 id="ETFsPositionalCashTradingPlanRiskManagementStrategy">RISK MANAGEMENT STRATEGY</h2>
         <section>
+          <h3 class="bold">Trim ETFs excess holdings</h3>
+          <p>
+            IF (holding % in any ETF is greater than max allowed limit)
+            <br />
+            AND
+            <br />
+            (Unrealised return is >= 2.5%)
+            <br />
+            THEN
+            <br />
+            &emsp;EXIT excess holdings using GTT order
+            <br />
+            Note: one also allowed to place GTT order to EXIT holdings when unrealized return reaches 2.5% of average entry price
+            <br />
+            <br />
+            Next day, Reinvest the proceeds in ETFs whose investment amount is less than the maximum allowed investment according to capital allocation strategy.
+            <br />
+            E.g.
+            <br />
+            Total principal amount: ₹4.72L
+            <br />
+            Current scenario:
+            <br />
+            ETF investment% UnrealisedP&L%
+            <br />
+            Silverbees 0%
+            <br />
+            Goldbees 5% 1%
+            <br />
+            Niftybees 30% -0.5%
+            <br />
+            Juniorbees 30% 3%
+            <br />
+            Bankbees 30% -3.5%
+            <br />
+            Midcapbees 5% -1.5%
+            <br />
+            <br />
+            Then
+            <br />
+            EXIT juniorbees (30% - 12.5%) = 17.5%
+            <br />
+            EXIT 17.5% out of juniorbees and next day Reinvest in
+            <br />
+            Silverbees, goldbees, midcapbees
+            <br />
+            <br />
+            Invest in such a way that maximum amount invested and keeping individual ETF maximum portfolio allocation percentage investment limit intact
+            <br />
+            I.e. 25% max for goldbees, silverbees
+            <br />
+            12.5% for mid150bees
+            <br />
+            <br />
+            Now if requires to develop calculator for this then develop
+            <br />
+            ( or )
+            <br />
+            compute manually.
+          </p>
+        </section>
+        <section>
           <h3>penalty of -₹5k</h3>
           <ol>
             <li>booked loss in any ETFs script</li>
@@ -445,8 +510,8 @@
           </ol>
         </section>
 
-        <section>
-          <h3>WEAKEST SCRIPT SELECTION CRITERIA</h3>
+        <section id="ETFsPositionalCashTradingPlanWeakestScriptSelectionCriteria">
+          <h3 id="ETFsPositionalCashTradingPlanWeakestScriptSelectionCriteria">WEAKEST SCRIPT SELECTION CRITERIA</h3>
           select weakest script among all 6 scripts (A,B,C,D,E,F) satisfying following rules
           <ol>
             <li>Unrealised reward >=2% AND &lt;=3%</li>
@@ -618,9 +683,9 @@
           <ol>
             <li>
               Refer
-              <a href="#ETFsPositionalCashTradingPlanExitCriteriaIndividualWeakestEtf">EXIT CRITERIA INDIVIDUAL WEAKEST ETF</a>
+              <a href="#ETFsPositionalCashTradingPlanWeeklyExitCriteriaIndividualWeakestEtf">WEEKLY EXIT CRITERIA INDIVIDUAL WEAKEST ETF</a>
               ,
-              <a href="#ETFsPositionalCashTradingPlanExitCriteriaIndividualStrongestEtf">EXIT CRITERIA INDIVIDUAL STRONGEST ETF</a>
+              <a href="#ETFsPositionalCashTradingPlanWeeklyExitCriteriaIndividualStrongEtf">WEEKLY EXIT CRITERIA INDIVIDUAL STRONG ETF</a>
             </li>
             <li>
               Refer
@@ -661,7 +726,7 @@
           </p>
         </section>
 
-        <section>
+        <section id="ETFsPositionalCashTradingPlanWhatToDoWhenHoldingIsInProfit">
           <h3><span class="bold">what to do when holding is in profit?</span></h3>
           <p>
             IF Overvall portfolio is >=10%
@@ -737,7 +802,7 @@
             <li>SL of closing - 0.26%</li>
           </ol>
         </section>
-        <section>
+        <section id="ETFsPositionalCashTradingPlanWeeklyExitCriteriaIndividualWeakestEtf">
           <h3 class="bold">WEEKLY EXIT CRITERIA INDIVIDUAL WEAKEST ETF</h3>
           <p>
             Every Friday/LastWorkingDayOfWeek 03:40PM onwards, create GTT order to EXIT weakest ETF (100% of quantity) on Monday
@@ -749,7 +814,7 @@
             <a href="#ETFsPositionalCashTradingPlanWeakestScriptSelectionCriteria">WEAKEST SCRIPT SELECTION CRITERIA</a>
           </p>
         </section>
-        <section>
+        <section id="ETFsPositionalCashTradingPlanWeeklyExitCriteriaIndividualStrongEtf">
           <h3>
             <span class="bold">WEEKLY EXIT CRITERIA INDIVIDUAL STRONG ETF</span>
             <br />
@@ -801,7 +866,7 @@
           <p id="ETFsPositionalCashTradingPlanTimeBasedExitAllowedOnlyAfterFollowingDate" style="padding: 1rem"></p>
         </section>
 
-        <section>
+        <section id="ETFsPositionalCashTradingPlanTimeBasedExitCriteria">
           <h3>
             <span class="bold">TIME BASED EXIT CRITERIA</span>
             <br />
@@ -914,7 +979,7 @@
             <li>ATM PE Next month Expiry for nifty/bankNifty/niftyNext50/midcapNifty</li>
           </ol>
         </section>
-        <section>
+        <section id="ETFsPositionalCashTradingPlanHedgingCriteria">
           <h3 class="bold">HEDGING CRITERIA</h3>
           <ol>
             <li>Hedging can be done when Weekly timeframe candle forms kind of shooting star and then one will wait for the candle to give closing.</li>
@@ -1083,7 +1148,7 @@
           <p id="howMuchCurrencyOneAllowedToBorrowFromZerodhaCapital"></p>
         </section>
 
-        <section>
+        <section id="ETFsPositionalCashTradingPlanBorrowingStrategy">
           <h3>
             <span class="bold">BORROWING STRATEGY</span>
             <br />
@@ -1162,7 +1227,7 @@
             </li>
             <li>
               With 60% profits buy ETFs as mentioned in
-              <a href="#ETFsPositionalCashTradingPlanPositionSizing&PortfolioCapitalAllocationStrategy">POSITION SIZING & PORTFOLIO CAPITAL ALLOCATION STRATEGY</a>
+              <a href="#ETFsPositionalCashTradingPlanPositionSizingAndPortfolioCapitalAllocationStrategy">POSITION SIZING & PORTFOLIO CAPITAL ALLOCATION STRATEGY</a>
             </li>
             <li>Rapay back to zerodha capital the principal amount received by EXITING position</li>
           </ol>
@@ -1356,7 +1421,7 @@
             Note: Fetch these values from zerodha capital console only
           </code>
         </section>
-        <section>
+        <section id="ETFsPositionalCashTradingPlanZerodhaCapitalEmiRepaymentCriteria">
           <h3>ZERODHA CAPITAL EMI REPAYMENT CRITERIA</h3>
           <p>
             IF Overvall portfolio is >= 10%
@@ -1568,6 +1633,274 @@
             Date till ZerodhaCapitalLoan charges (interest, processing fee, taxes) are covered from profits
           </h3>
           <p id="ETFsPositionalCashTradingPlanDateTillZerodhacapitalloanCharges(Interest,ProcessingFee,Taxes)AreCoveredFromProfits"></p>
+        </section>
+        <section>
+          <h3 class="bold">Consider yesterday date for computing trading Expenses?</h3>
+          <p>when computing trading expenses consider yesterday date. As there might be any trades executed today whose expenses might not have been included yet.</p>
+        </section>
+        <section>
+          <h3 class="bold">profits payout will be made only after receiving contract note.</h3>
+          <p>this way one got correct EXIT price and charges till yesterday.</p>
+        </section>
+        <section>
+          <h3 class="bold">Why one TARGETing 10% of overall portfolio profit</h3>
+          <p>Compounding ₹4.52L (10% ROI), only 26 times:</p>
+          <ol>
+            <li>Principal amount will be: ₹20.56 Lakhs (considering just 60% of profits reinvested)</li>
+            <li>₹10.07 Lakhs will be already taken as 40% profits payouts</li>
+            <li>it gives peace of mind as 10% is achievable, considering now also allowed individual ETF EXIT for profit booking if having unrealized profit of >=10% using GTT OCO order</li>
+          </ol>
+        </section>
+        <section>
+          <h3 class="bold">How to Split Profits</h3>
+          <p>
+            🌳First deduct from Total profit, the EMI amount given to the zerodha capital, and keep it in the Zerodha, remaining account split into 60% and 40%
+            <br />
+
+            60%🌳Keep in Zerodha, thus increasing one's net Worth
+            <br />
+            40% of the profit split into following equal parts:
+          </p>
+
+          <ol>
+            <li>💰FDEmergencyFund</li>
+            <li>💰PocketMoney (keep as cash in IDBI, PNB)</li>
+            <li>💰 FDSavings</li>
+            <li>🎁 FDPocketMoney(mother)</li>
+            <li>🎁 FDLoanRepayment(mother)</li>
+            <li>🎁 FDPocketMoney(wife)</li>
+            <li>🎁 FDFoodNature(plantsBirdsAnimalsCreatures)</li>
+            <li>🎁 FDMedicareNature(plantsBirdsAnimalsCreatures)</li>
+            <li>🎁 FDMedicare(wholeFamily)</li>
+            <li>🎁 FDHouseholdExpenses(foodMiscellaneous)</li>
+            <li>🎁 FDHealthInsurance(wholeFamily)</li>
+            <li>🎁 FDWorldTour</li>
+            <li>🪙 GoldSilverETFs DigitalGoldSilverETFs</li>
+            <li>🪙 GoldSilverETFs 21BighaLandResidenceOrchard</li>
+            <li>📈 FDETFsCashPortfolioHedgingCapital</li>
+            <li>📈 FDMCXGoldFuturesIntradayTrading</li>
+            <li>📈 FDTradingExpenses</li>
+            <li>📈 AdulteryBurnedCurrencyRecovery</li>
+          </ol>
+          <p>
+            Explanation :
+            <br />
+            60% of whatever profits one make will keep into zerodha and Rest 40% of the profit split into following parts:
+          </p>
+
+          <ol>
+            <li>One part goes into Emergency Fund, so that in case of emergency one can have backup liquid cash</li>
+            <li>One part goes into Pocket Money</li>
+            <li>One part goes into Savings like buying one's favourite cycle with all accessories, books, laptop, anything.</li>
+            <li>One part goes to mother as pocket money</li>
+            <li>IFF Loan taken from mother then, One part goes to repayment of loan</li>
+            <li>One part goes to wife as pocket money, IF unmarried, to be handed over to wife, one month after marriage</li>
+            <li>One part goes for FoodNature (plants, birds, animals, creatures)</li>
+            <li>One part goes for MedicareNature (plants, birds, animals, creatures)</li>
+            <li>One part goes for FDMedicare(wholeFamily)</li>
+            <li>One part goes for household expenses like groceries, electricity, internet, LPG cylinder, bike fuel, detergent, medicines etc.</li>
+            <li>One part goes for HealthInsurance whole family</li>
+            <li>One part goes for World Tour</li>
+            <li>One part goes into DigitalGoldSilverETFs . later to be converted into physical gold, silver when enough to purchase 1kg silver, 20gm Gold</li>
+            <li>
+              One part goes into 21BighaLandResidenceOrchard. open access to all creatures, having fruits trees, vegetables, herbs, clean running drinking water. when enought to purchase 21 bigha land these gold silver ETFs needs to be transferred into sellers account or conversion into physical
+              cash after paying taxes
+            </li>
+            <li>One part goes into ETFsCashPortfolioHedgingCapital. for buying ATM Montly PE for (Niftybees, BankBees, JuniorBees, MidcapBees), Hedging by SHORTING equal amount of MCX Futures(Gold, SIlver)</li>
+            <li>One part goes into MCXGoldFuturesIntradayTrading</li>
+            <li>One part goes into TradingExpenses</li>
+            <li>One part goes into AdulteryBurnedCurrencyRecovery (RepayToZerodhaETFsPrincipalAmount)</li>
+          </ol>
+        </section>
+        <section>
+          <h3 class="bold">mother minimum payout is ₹3k</h3>
+          <p>keep accumulating her share of profits in FD Tiding mother till ₹3k threshold reached and then swap with Physical Cash and make her payout.</p>
+        </section>
+        <section>
+          <h3 class="bold">How much mininum principal amount to keep in Zerodha for ETFs GTT orders buying</h3>
+          <ol>
+            <li>90% keep in zerodha for positional ETFs trading</li>
+            <li>10% keep in Upstox for Gold Future intraday trading IFF disiciplines by risking &lt; 0.89% per trade</li>
+          </ol>
+        </section>
+        <section>
+          <h3 class="bold">What if one broke one's rules and loose one's principal amount</h3>
+          <p>take full responsibility of one's actions, now only one will protect one's principal amount and grow with it, or hahah will suffer miserably for one's own negligence, one will protect one's principal amount and make it grow via compounding</p>
+        </section>
+        <section>
+          <h3 class="bold">Why one doing cash trading only</h3>
+          <p>to protect one's principal amount and grow it steadily by 10% compounding</p>
+        </section>
+      </section>
+      <section id="ETFsPositionalCashTradingPlanExitStrategy">
+        <h2>EXIT STRATEGY</h2>
+        <section>
+          <h3 class="bold">EXIT order type</h3>
+          <p>GTT LIMIT</p>
+        </section>
+        <section>
+          <h3 class="bold">
+            EXIT Order
+            <br />
+            <span class="italic">(TARGET/profit booking)</span>
+          </h3>
+          <p>GTT OCO having two legs</p>
+          <ol>
+            <li>TARGET CLOSING + 0.26%</li>
+            <li>SL CLOSING - 0.26%</li>
+          </ol>
+        </section>
+        <section id="ETFsPositionalCashTradingPlanExitStrategyWhen10PercentTargetAchieved">
+          <h3>EXIT STRATEGY WHEN 10% TARGET ACHIEVED?</h3>
+          <ol>
+            <li>EXIT Weakest Scripts first having lower percentage return</li>
+            <li>IF multiple ETFs having same unralized return then choose one having highest invested capital among two</li>
+            <li>IF loan taken from zerodha capital then use 100% of principal amount from EXIT to repay loan</li>
+            <li>Use 60% profits as well for loan repayment, get 40% profits payouts as mentioned in How to Split Profits</li>
+          </ol>
+
+          <p>
+            For e.g.
+            <br />
+            Six ETFs with capital allocaiton as follows
+            <br />
+            A : (₹40k, B, : ₹40k C : ₹90k, D : ₹90k, E: ₹65k, F : ₹65k)
+            <br />
+            <br />
+            Day #1 (10% overall TARGET achieved)
+            <br />
+            A : 35%, B: 18%, C: 10%, D: 22%,
+            <strong>E: -3%, F: 5%</strong>
+            <br />
+            First EXIT E (-3%) then EXIT F (5%)
+            <br />
+            <br />
+            <span class="bold">Important Note:</span>
+            as one have taken loan from zerodha capital by pledging one's secuirities, one would not be able to sell them all at once, without first unpledging them by repaying loan to zerodha capital and it might take 2-3 days for currency to be credited to one's bank account then repayment of
+            zerodha loan then unpledging of security and able to EXIT, at that time the overall return percentage might have changed so keep mind to EXIT first lower percentage Reward scripts as they the one who might turn downside so first EXIT those scripts, no matter if they in negative just EXIT
+            them first.
+            <br />
+            <br />
+            Day #2 (after securities UNPLEDGED by repaying loan payment to zerodha capital and ready to EXIT), now due to randomness return might vary, just EXIT no matter what now 10% return figure is insignificant just EXIT
+            <br />
+            A : 30%,
+            <strong>B: 10%, C: 10%,</strong>
+            D: 18%
+            <br />
+            EXIT first C(10%) then B(10%)
+            <br />
+            <br />
+            Day #3 (after securities UNPLEDGED by repaying loan payment to zerodha capital and ready to EXIT), now due to randomness return might vary, just EXIT no matter what now 10% return figure is insignificant just EXIT
+            <br />
+            A : 35%, D: 21%
+            <br />
+            EXIT first D(10%) then A(10%)
+            <br />
+            <br />
+            Well Done, one proud of oneself for being disciplines in overall achiving TARGET of 10%, thank you for perfect execution of trading plan.
+          </p>
+        </section>
+        <section>
+          <h3 class="bold">Can one EXIT 100% of one's portfolio when unrealized profit >= 10%</h3>
+          <p>Allowed</p>
+        </section>
+      </section>
+      <section id="ETFsPositionalCashTradingPlanPositionSizingAndPortfolioCapitalAllocationStrategy">
+        <h2>POSITION SIZING & PORTFOLIO CAPITAL ALLOCATION STRATEGY</h2>
+        <section>
+          <h3>
+            <span class="bold">Max. allowed investment in Commodity ETFs</span>
+            <br />
+            <span class="italic">(Goldbees, Silverbees)</span>
+          </h3>
+          <p>50% of the principal amount</p>
+        </section>
+        <section>
+          <h3>
+            <span class="bold">Max. allowed investment in Stock ETFs</span>
+            <br />
+            <span class="italic">(Niftybees, bankbees, juniorbees, midcapbees)</span>
+          </h3>
+          <p>50% of the principal amount</p>
+        </section>
+        <section>
+          <h3>
+            <span class="bold">PORTFOLIO ALLOCATION STRATEGY</span>
+            <br />
+            <span class="italic">Max. allowed investment per script</span>
+          </h3>
+          <p>
+            Commodities
+            <br />
+            Goldbees 25% of principal amount
+            <br />
+            Silverbees 25% of principal amount
+            <br />
+            <br />
+            Stocks
+            <br />
+            Niftybees 12.5% of principal amount
+            <br />
+            Bankbees 12.5% of principal amount
+            <br />
+            Juniorbees 12.5% of principal amount
+            <br />
+            Midcapbees 12.5% of principal amount
+          </p>
+        </section>
+      </section>
+      <section id="ETFsPositionalCashTradingPlanEntryStrategy">
+        <h2>ENTRY STRATEGY</h2>
+        <section>
+          <h3 class="bold">When to place new GTT ENTRY/EXIT Orders</h3>
+          <p>Next Day 04:00AM to 09:00AM</p>
+        </section>
+        <section>
+          <h3 class="bold">ENTRY order type</h3>
+          <p>GTT limit</p>
+        </section>
+        <section>
+          <h3 class="bold">How to took ENTRY</h3>
+          <p>place GTT at daily closing + 0.26% of the ETF script</p>
+        </section>
+        <section>
+          <h3 class="bold">What to Ask oneself before taking new position</h3>
+          <p>how can one perfectly execute one's trading plan rules</p>
+        </section>
+        <section>
+          <h3 class="bold">How to make step wise entry in position</h3>
+          <ol>
+            <li>Just invest 100% of one's own principal amount same day according to investment percentage, if there is gap up and some of the scripts not filled then try next day after market closing.</li>
+            <li>
+              When one's portfolio is negative under &lt;= -7.5% and have taken loan from zerodha capital assuming contract is still having more than 3 months to repay loan, then PLEDGE the portfolio and again invest 100% of the loan amount same day according to one's position sizing criteria.
+            </li>
+          </ol>
+          <p>
+            Refer
+            <a href="#ETFsPositionalCashTradingPlanBorrowingStrategy">BORROWING STRATEGY</a>
+          </p>
+        </section>
+        <section>
+          <h3 class="bold">can one average in loosing position</h3>
+          <p>
+            Allowed
+            <br />
+            as specified in
+            <a href="#ETFsPositionalCashTradingPlanBorrowingStrategy">BORROWING STRATEGY</a>
+            ,
+            <a href="#ETFsPositionalCashTradingPlanRiskManagementStrategy">RISK MANAGEMENT STRATEGY</a>
+          </p>
+        </section>
+        <section>
+          <h3 class="bold">can one pyramid in profitable position</h3>
+          <p>
+            Allowed
+            <br />
+            as specified in
+            <a href="#ETFsPositionalCashTradingPlanBorrowingStrategy">BORROWING STRATEGY</a>
+            ,
+            <a href="#ETFsPositionalCashTradingPlanRiskManagementStrategy">RISK MANAGEMENT STRATEGY</a>
+          </p>
         </section>
       </section>
     </main>
