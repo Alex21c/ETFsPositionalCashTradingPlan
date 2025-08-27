@@ -134,7 +134,7 @@
         const today = new Date();
         const targetDate = new Date(b3);
         today.setHours(0, 0, 0, 0);
-        IF (today >= targetDate) {
+        if (today >= targetDate) {
           document.getElementById("ETFsPositionalCashTradingPlanTimeBasedExitAllowedOnlyAfterFollowingDate").style.backgroundColor = "#B4EEEE";
         }
         //Max allowed capital for hedging in FD-PortfolioHedgingCapital (20% of (portfolio holdings + cash in zerodha) )
@@ -192,15 +192,15 @@
         selectCurrentPhaseOfZerodhaETFsPositionalTrading.addEventListener("change", () => {
           const value = selectCurrentPhaseOfZerodhaETFsPositionalTrading.options[selectCurrentPhaseOfZerodhaETFsPositionalTrading.selectedIndex].text;
           let data = "";
-          IF (value.toLowerCase() == "phase #1") {
+          if (value.toLowerCase() == "phase #1") {
             data = "Invest Own Capital";
-          } else IF (value.toLowerCase() == "phase #2") {
+          } else if (value.toLowerCase() == "phase #2") {
             data = "Take Loan from Zerodha Capital (maintain debit : equity = 50%)";
-          } else IF (value.toLowerCase() == "phase #3") {
+          } else if (value.toLowerCase() == "phase #3") {
             data = "Take another Loan from Zerodha Capital (maintain debit : equity = 75%)";
-          } else IF (value.toLowerCase() == "phase #4") {
+          } else if (value.toLowerCase() == "phase #4") {
             data = "Gradual Loan Repayment to Zerodha Capital (debt : equity restore to 50% || 0%)";
-          } else IF (value.toLowerCase() == "phase #5") {
+          } else if (value.toLowerCase() == "phase #5") {
             data = "TimebasedExit Triggered, Urgent Loan Repayment to zerodha capital (maintain debt : equity to 0%";
           }
           actionAccordingToCurrentPhaseTradingPlanRules.innerText = data;
@@ -395,7 +395,7 @@
         <section>
           <h3 class="bold">Trim ETFs excess holdings</h3>
           <p>
-            IF (holding % in any ETF is greater than max allowed limit)
+            if (holding % in any ETF is greater than max allowed limit)
             <br />
             AND
             <br />
@@ -825,7 +825,7 @@
           <p>
             Every Friday/LastWorkingDayOfWeek 03:40PM onward create GTT order to EXIT Individual Strong ETF Satisfying following conditions:
             <br />
-            IF (any individual ETF unrealized return >=7.5% ) AND (on its weekly timeframe shooting star candle forms)
+            if (any individual ETF unrealized return >=7.5% ) AND (on its weekly timeframe shooting star candle forms)
             <br />
           </p>
           <ol>
@@ -838,7 +838,7 @@
           </ol>
 
           <p>
-            ELSE IF (any individual ETF unrealized return &lt; 7.5% ) AND (On its weekly timeframe shooting star candle forms)
+            ELSE if (any individual ETF unrealized return &lt; 7.5% ) AND (On its weekly timeframe shooting star candle forms)
             <br />
             &emsp;refer
             <a href="#ETFsPositionalCashTradingPlanHedgingCriteria">HEDGING CRITERIA</a>
@@ -2091,7 +2091,7 @@
           <h3 class="bold">
             After reading trading plan,
             <br />
-            IF (there is no electricity) &&
+            if (there is no electricity) &&
             <br />
             (there are pending GTT orders creation/update) THEN
           </h3>
