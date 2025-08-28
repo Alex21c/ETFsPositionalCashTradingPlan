@@ -32,6 +32,11 @@
       body {
         font-size: 1rem;
         margin-bottom: 25rem;
+        hyphens: none; /* Standard */
+        -webkit-hyphens: none; /* For WebKit */
+        -epub-hyphens: none; /* For Kindle / ePub */
+        word-break: keep-all; /* Prevents breaking words */
+        overflow-wrap: normal; /* Avoid forced wraps */
       }
 
       h2 {
