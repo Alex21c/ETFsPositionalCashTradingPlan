@@ -40,10 +40,10 @@
       }
 
       h2 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
       }
       h3 {
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
 
       h2,
@@ -143,19 +143,19 @@
         let b4 = rows[1][0];
         b4 = parseInt(b4.replace(/[^\d]/g, ""), 10);
 
-        document.getElementById("ETFsPositionalCashTradingPlanRequired20PercentOfPortfolioHoldingsPlusCashInZerodha").innerText = "₹" + b4;
+        document.getElementById("ETFsPositionalCashTradingPlanRequired20PercentOfPortfolioHoldingsPlusCashInZerodha").innerText = "?" + b4;
 
-        // ETFsPositionalCashTradingPlanPresentIn🎁📈FdETFsCashPortfolioHedgingCapital
+        // ETFsPositionalCashTradingPlanPresentIn????FdETFsCashPortfolioHedgingCapital
         let b5 = rows[2][0];
         b5 = parseInt(b5.replace(/[^\d]/g, ""), 10);
-        document.getElementById("ETFsPositionalCashTradingPlanPresentIn🎁📈FdETFsCashPortfolioHedgingCapital").innerText = "₹" + b5;
+        document.getElementById("ETFsPositionalCashTradingPlanPresentIn????FdETFsCashPortfolioHedgingCapital").innerText = "?" + b5;
 
         // ETFsPositionalCashTradingPlanIsAllowedToOpenHedgingAccountWithFyers
         document.getElementById("ETFsPositionalCashTradingPlanIsAllowedToOpenHedgingAccountWithFyers").innerText = b5 >= b4 ? "YES" : "Not Yet";
 
-        //ETFsPositionalCashTradingPlan🌳ZerodhaEtfsHoldings
+        //ETFsPositionalCashTradingPlan??ZerodhaEtfsHoldings
         const b6 = rows[3][0];
-        document.getElementById("ETFsPositionalCashTradingPlan🌳ZerodhaEtfsHoldings").innerText = b6;
+        document.getElementById("ETFsPositionalCashTradingPlan??ZerodhaEtfsHoldings").innerText = b6;
         //ETFsPositionalCashTradingPlanZerodhaCash
         const b7 = rows[4][0];
         document.getElementById("ETFsPositionalCashTradingPlanZerodhaCash").innerText = b7;
@@ -397,7 +397,7 @@
         <section>
           <h3 class="bold">Trim ETFs excess holdings</h3>
           <p>
-            if (holding % in any ETF is greater than max allowed limit)
+            IF (holding % in any ETF is greater than max allowed limit)
             <br />
             AND
             <br />
@@ -827,7 +827,7 @@
           <p>
             Every Friday/LastWorkingDayOfWeek 03:40PM onward create GTT order to EXIT Individual Strong ETF Satisfying following conditions:
             <br />
-            if (any individual ETF unrealized return >=7.5% ) AND (on its weekly timeframe shooting star candle forms)
+            IF (any individual ETF unrealized return >=7.5% ) AND (on its weekly timeframe shooting star candle forms)
             <br />
           </p>
           <ol>
@@ -840,7 +840,7 @@
           </ol>
 
           <p>
-            ELSE if (any individual ETF unrealized return &lt; 7.5% ) AND (On its weekly timeframe shooting star candle forms)
+            ELSE IF (any individual ETF unrealized return &lt; 7.5% ) AND (On its weekly timeframe shooting star candle forms)
             <br />
             &emsp;refer
             <a href="#ETFsPositionalCashTradingPlanHedgingCriteria">HEDGING CRITERIA</a>
@@ -2105,7 +2105,7 @@
           <h3 class="bold">
             After reading trading plan,
             <br />
-            if (there is no electricity) &&
+            IF (there is no electricity) &&
             <br />
             (there are pending GTT orders creation/update) THEN
           </h3>
