@@ -143,19 +143,19 @@
         let b4 = rows[1][0];
         b4 = parseInt(b4.replace(/[^\d]/g, ""), 10);
 
-        document.getElementById("ETFsPositionalCashTradingPlanRequired20PercentOfPortfolioHoldingsPlusCashInZerodha").innerText = "?" + b4;
+        document.getElementById("ETFsPositionalCashTradingPlanRequired20PercentOfPortfolioHoldingsPlusCashInZerodha").innerText = "₹" + b4;
 
-        // ETFsPositionalCashTradingPlanPresentIn????FdETFsCashPortfolioHedgingCapital
+        // ETFsPositionalCashTradingPlanPresentIn🎁📈FdETFsCashPortfolioHedgingCapital
         let b5 = rows[2][0];
         b5 = parseInt(b5.replace(/[^\d]/g, ""), 10);
-        document.getElementById("ETFsPositionalCashTradingPlanPresentIn????FdETFsCashPortfolioHedgingCapital").innerText = "?" + b5;
+        document.getElementById("ETFsPositionalCashTradingPlanPresentIn🎁📈FdETFsCashPortfolioHedgingCapital").innerText = "₹" + b5;
 
         // ETFsPositionalCashTradingPlanIsAllowedToOpenHedgingAccountWithFyers
         document.getElementById("ETFsPositionalCashTradingPlanIsAllowedToOpenHedgingAccountWithFyers").innerText = b5 >= b4 ? "YES" : "Not Yet";
 
-        //ETFsPositionalCashTradingPlan??ZerodhaEtfsHoldings
+        //ETFsPositionalCashTradingPlan🌳ZerodhaEtfsHoldings
         const b6 = rows[3][0];
-        document.getElementById("ETFsPositionalCashTradingPlan??ZerodhaEtfsHoldings").innerText = b6;
+        document.getElementById("ETFsPositionalCashTradingPlan🌳ZerodhaEtfsHoldings").innerText = b6;
         //ETFsPositionalCashTradingPlanZerodhaCash
         const b7 = rows[4][0];
         document.getElementById("ETFsPositionalCashTradingPlanZerodhaCash").innerText = b7;
@@ -429,11 +429,20 @@
           <h3>Encashing 10% profit opportunity in individual ETF</h3>
           <ol>
             <li>
-              EXIT IF individual ETF having unrealized profit of &gt;=10% using GTT OCO
-              <ol>
-                <li>CLOSING + 0.25% TARGET,</li>
-                <li>CLOSING - 0.25% SL</li>
-              </ol>
+              EXIT IF individual ETF having unrealized profit of &gt;=10% using
+              <br />
+              GTT OCO
+              <br />
+              &emsp;a. CLOSING + 0.25% TARGET,
+              <br />
+              &emsp;b. CLOSING - 0.25% SL
+              <br />
+              (OR)
+              <br />
+              GTT EXIT LIMIT
+              <br />
+              &emsp;a. Average buying price (fetch from console) + 10%
+              <br />
             </li>
             <li>
               (Condition #1) &amp;&amp; (After EXIT, Next Day after receving contract note)
@@ -1073,7 +1082,17 @@
           <h3 class="bold">howMuchCurrencyOneAllowedToBorrowFromZerodhaCapital</h3>
           <p id="howMuchCurrencyOneAllowedToBorrowFromZerodhaCapital"></p>
         </section>
-
+        <section>
+          <h3>
+            <span class="bold">Borrowing</span>
+            from Zerodha Capital by pledging ETFS is
+            <span class="bold">allowed only when</span>
+          </h3>
+          <ol>
+            <li>100% of principal amount is invested in all 6 ETFs according to Trading Plan</li>
+            <li>100% of purchased ETFs are transferred to one's demat account and elegible for pledging</li>
+          </ol>
+        </section>
         <section id="ETFsPositionalCashTradingPlanBorrowingStrategy">
           <h3>
             <span class="bold">BORROWING STRATEGY</span>
@@ -1081,18 +1100,19 @@
             <span class="italic">so that one having higher probability of getting 10% returns faster</span>
           </h3>
           <p>
-            PHASE #1, Invest Own Capital
+            <strong>PHASE #1, Invest Own Capital</strong>
             <br />
             &emsp;first invest 100% of one's own principal amount in ETFs according to percentage of each ETF in portfolio allocation strategy
             <br />
             <br />
+            <strong>PHASE #2, Take Loan from Zerodha Capital (maintain debit : equity = 50%)</strong>
 
-            PHASE #2, Take Loan from Zerodha Capital (maintain debit : equity = 50%)
             <br />
             &emsp;when (portfolio unrealized P&L &lt;= -7.5%) then keep taking loan for ETFs investments from zerodha capital till debit : equity ratio is &lt;50%
             <br />
             <br />
-            PHASE #3, Take another Loan from Zerodha Capital (maintain debit : equity = 75%)
+            <strong>PHASE #3, Take another Loan from Zerodha Capital (maintain debit : equity = 75%)</strong>
+
             <br />
             &emsp;when (debt : equity ratio = 50%) AND (overall portfolio >= 1%) then
             <br />
@@ -1106,7 +1126,8 @@
             &emsp;&emsp;&emsp;once again start taking loan for ETFs investments from zerodha capital till one's debt : equity ratio &lt; 75%
             <br />
             <br />
-            PHASE #4, Gradual Loan Repayment to Zerodha Capital (debt :equity restore to 50%)
+            <strong>PHASE #4, Gradual Loan Repayment to Zerodha Capital (debt :equity restore to 50%)</strong>
+
             <br />
             &emsp;when (debt : equity touched 75%) then
             <br />
@@ -1119,8 +1140,8 @@
             now this way one having the strongest performing ETFs and would help one get 10% returns faster
             <br />
             <br />
+            <strong>PHASE #5, TimebasedExit Triggered, Urgent Loan Repayment to zerodha capital (maintain debt : equity to 0%)</strong>
 
-            PHASE #5, TimebasedExit Triggered, Urgent Loan Repayment to zerodha capital (maintain debt : equity to 0%)
             <br />
             &emsp;a. start EXITING Weakest ETFs and repay full amount to zerodha capital. for EXITING weakest ETF allowed to EXIT daily or weekly iff satisfying
             <a href="#ETFsPositionalCashTradingPlanWeakestScriptSelectionCriteria">WEAKEST SCRIPT SELECTION CRITERIA</a>
